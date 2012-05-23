@@ -1,0 +1,22 @@
+C:\Dokumente und Einstellungen\pYRo\Eigene Dateien\Visual Studio 2008\Projects\USBInsanity\USBInsanity\bin\Release\USBInsanity.exe.config
+C:\Dokumente und Einstellungen\pYRo\Eigene Dateien\Visual Studio 2008\Projects\USBInsanity\USBInsanity\bin\Release\USBInsanity.exe
+C:\Dokumente und Einstellungen\pYRo\Eigene Dateien\Visual Studio 2008\Projects\USBInsanity\USBInsanity\bin\Release\USBInsanity.pdb
+C:\Dokumente und Einstellungen\pYRo\Eigene Dateien\Visual Studio 2008\Projects\USBInsanity\USBInsanity\bin\Release\USBInsanity.xml
+C:\Dokumente und Einstellungen\pYRo\Eigene Dateien\Visual Studio 2008\Projects\USBInsanity\USBInsanity\obj\Release\ResolveAssemblyReference.cache
+C:\Dokumente und Einstellungen\pYRo\Eigene Dateien\Visual Studio 2008\Projects\USBInsanity\USBInsanity\obj\Release\USBInsanity.Form1.resources
+C:\Dokumente und Einstellungen\pYRo\Eigene Dateien\Visual Studio 2008\Projects\USBInsanity\USBInsanity\obj\Release\USBInsanity.Resources.resources
+C:\Dokumente und Einstellungen\pYRo\Eigene Dateien\Visual Studio 2008\Projects\USBInsanity\USBInsanity\obj\Release\USBInsanity.vbproj.GenerateResource.Cache
+C:\Dokumente und Einstellungen\pYRo\Eigene Dateien\Visual Studio 2008\Projects\USBInsanity\USBInsanity\obj\Release\USBInsanity.exe
+C:\Dokumente und Einstellungen\pYRo\Eigene Dateien\Visual Studio 2008\Projects\USBInsanity\USBInsanity\obj\Release\USBInsanity.xml
+C:\Dokumente und Einstellungen\pYRo\Eigene Dateien\Visual Studio 2008\Projects\USBInsanity\USBInsanity\obj\Release\USBInsanity.pdb
+D:\Eigene_Dateien\Visual Studio 2008\Projects\USBInsanity\USBInsanity\bin\Release\USBInsanity.exe.config
+D:\Eigene_Dateien\Visual Studio 2008\Projects\USBInsanity\USBInsanity\obj\Release\USBInsanity.exe
+D:\Eigene_Dateien\Visual Studio 2008\Projects\USBInsanity\USBInsanity\obj\Release\USBInsanity.xml
+D:\Eigene_Dateien\Visual Studio 2008\Projects\USBInsanity\USBInsanity\obj\Release\USBInsanity.pdb
+D:\Eigene_Dateien\Visual Studio 2008\Projects\USBInsanity\USBInsanity\bin\Release\USBInsanity.exe
+D:\Eigene_Dateien\Visual Studio 2008\Projects\USBInsanity\USBInsanity\bin\Release\USBInsanity.pdb
+D:\Eigene_Dateien\Visual Studio 2008\Projects\USBInsanity\USBInsanity\bin\Release\USBInsanity.xml
+D:\Eigene_Dateien\Visual Studio 2008\Projects\USBInsanity\USBInsanity\obj\Release\ResolveAssemblyReference.cache
+D:\Eigene_Dateien\Visual Studio 2008\Projects\USBInsanity\USBInsanity\obj\Release\USBInsanity.Form1.resources
+D:\Eigene_Dateien\Visual Studio 2008\Projects\USBInsanity\USBInsanity\obj\Release\USBInsanity.Resources.resources
+D:\Eigene_Dateien\Visual Studio 2008\Projects\USBInsanity\USBInsanity\obj\Release\USBInsanity.vbproj.GenerateResource.Cache

@@ -1,0 +1,26 @@
+USBInsanity
+Changelog or History whatever, topmost entry is the actual one :)
+
+0.86	2011-12-24
+	# Fixed wrong recognition of special chars in game-titles while
+	  reading the ul.cfg and therefore destroying those entries
+	  on sorting
+
+0.85	2011-08-09
+	- Heavy code restructuring from static to object oriented code
+	+ Added ability to sort the games list and to delete both,
+	  entries from list and belonging files on disk
+	+ Created a nice icon
+	# Fixed bug in hash-creation so all entries are fine now
+	  Fixed another small bug in Errorhandling when no gametitle and
+	  no disc were present
+
+
+0.60	2007-and-anything
+	- Could read ul.cfg and System.CNF from any drive and was able to
+	  add new entries
+	- No abilities to create game-images or to handle them in any way
+	  so image create/copy/rename had to been made by hand
+	- had a nasty bug in hash-creation that broke some rare game-entries
+
+©2007-2011 by NoNo

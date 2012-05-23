@@ -1,0 +1,11 @@
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\USBInsanity.Form1.resources
+obj\Debug\USBInsanity.Resources.resources
+obj\Debug\USBInsanity.vbproj.GenerateResource.Cache
+bin\Debug\USBInsanity.exe.config
+bin\Debug\USBInsanity.exe
+bin\Debug\USBInsanity.pdb
+bin\Debug\USBInsanity.xml
+obj\Debug\USBInsanity.exe
+obj\Debug\USBInsanity.xml
+obj\Debug\USBInsanity.pdb

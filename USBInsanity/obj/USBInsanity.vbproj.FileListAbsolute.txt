@@ -1,0 +1,11 @@
+C:\Dokumente und Einstellungen\pYRo\Eigene Dateien\Visual Studio 2005\Projects\USBInsanity\USBInsanity\bin\Debug\USBInsanity.exe.config
+C:\Dokumente und Einstellungen\pYRo\Eigene Dateien\Visual Studio 2005\Projects\USBInsanity\USBInsanity\obj\Debug\USBInsanity.exe
+C:\Dokumente und Einstellungen\pYRo\Eigene Dateien\Visual Studio 2005\Projects\USBInsanity\USBInsanity\obj\Debug\USBInsanity.xml
+C:\Dokumente und Einstellungen\pYRo\Eigene Dateien\Visual Studio 2005\Projects\USBInsanity\USBInsanity\obj\Debug\USBInsanity.pdb
+C:\Dokumente und Einstellungen\pYRo\Eigene Dateien\Visual Studio 2005\Projects\USBInsanity\USBInsanity\bin\Debug\USBInsanity.exe
+C:\Dokumente und Einstellungen\pYRo\Eigene Dateien\Visual Studio 2005\Projects\USBInsanity\USBInsanity\bin\Debug\USBInsanity.pdb
+C:\Dokumente und Einstellungen\pYRo\Eigene Dateien\Visual Studio 2005\Projects\USBInsanity\USBInsanity\bin\Debug\USBInsanity.xml
+C:\Dokumente und Einstellungen\pYRo\Eigene Dateien\Visual Studio 2005\Projects\USBInsanity\USBInsanity\obj\Debug\ResolveAssemblyReference.cache
+C:\Dokumente und Einstellungen\pYRo\Eigene Dateien\Visual Studio 2005\Projects\USBInsanity\USBInsanity\obj\Debug\USBInsanity.Form1.resources
+C:\Dokumente und Einstellungen\pYRo\Eigene Dateien\Visual Studio 2005\Projects\USBInsanity\USBInsanity\obj\Debug\USBInsanity.Resources.resources
+C:\Dokumente und Einstellungen\pYRo\Eigene Dateien\Visual Studio 2005\Projects\USBInsanity\USBInsanity\obj\Debug\USBInsanity.vbproj.GenerateResource.Cache

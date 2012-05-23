@@ -1,0 +1,32 @@
+Credits go out to some Copyrightholders of tools i used to build this or inspired me to do so.
+
+*** This program was built with those ones: ***
+
+Microsoft(r) for Microsoft Visual Studio 2008 Professional
+	Built almost all my Software with VS - > love .NET
+
+RealWorld Graphics for RealWorld Icon Editor
+	Built my fantasticular spectacular icon with it xD
+
+Oleh Yuschuk for OllyDbg
+	Used to reverse engineer Usbextreme to get the hash-routine and -table
+
+
+
+*** This program is inspired by these ones: ***
+
+USBExtreme/USBAdvance
+	no need for description
+
+Ifcaro & jimmikaelkael for Open PS2 Loader aswell as -SP193 for PS2ESDL and 
+	if I wouldn't had found these tools i wouldn't had never worked on on usbinsane
+
+ISEKO Team for USBUtil
+	Almost perfect and in most ways better than usbinsane it still lacks the support
+	for startfiles like BOOT.ELF and PBPX_952.01.
+
+The Makers of UsbInsane and UsbExtreme
+	Your tools just built the need for another one ;)
+
+
+*** This is the biggest keygen i'd ever written ***

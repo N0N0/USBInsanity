@@ -1,0 +1,32 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+USBInsanity
+</name>
+</assembly>
+<members>
+<member name="M:USBInsanity.clStrings.funcLeft(System.String,System.Int32)">
+	<summary>Schneidet einen String von  Links nach Rechts und liefert den abgetrennten Teil zurück.</summary>
+	<param name="sText">Ausgangsstring</param>
+	<param name="nLen">Anzahl zu schneidender Zeichen</param>
+</member><member name="M:USBInsanity.clStrings.funcRight(System.String,System.Int32)">
+	<summary>Schneidet einen String von Rechts nach Links und liefert den abgetrennten Teil zurück.</summary>
+	<param name="sText">Ausgangsstring</param>
+	<param name="nLen">Anzahl zu schneidender Zeichen</param>
+</member><member name="P:USBInsanity.My.Resources.Resources.ResourceManager">
+	<summary>
+  Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
+</summary>
+</member><member name="P:USBInsanity.My.Resources.Resources.Culture">
+	<summary>
+  Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
+  Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
+</summary>
+</member><member name="T:USBInsanity.My.Resources.Resources">
+	<summary>
+  Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
+</summary>
+</member>
+</members>
+</doc>

@@ -1,0 +1,5 @@
+Schreibzugriffe erfolgen Byteweise, das macht das Schreiben auf USB-Laufwerke sehr langsam...
+betroffene Funktionen:	clUsbadvance.WriteNewUlcfg und .WriteUlcfg
+			  |--> clFileAccess.funcBinaryWrite
+			
+	
