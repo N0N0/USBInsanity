@@ -1,6 +1,13 @@
 USBInsanity
 Changelog or History whatever, topmost entry is the actual one :)
 
+0.90b	2014-01-02
+	- Some refactoring and small optimizations
+	+ Add Game from ISO9660 via DiscUtils Library
+
+0.86.1	2012-11-11
+	# Switched to a monospaced font for the gameslist (Courier New)
+
 0.86	2011-12-24
 	# Fixed wrong recognition of special chars in game-titles while
 	  reading the ul.cfg and therefore destroying those entries
@@ -23,4 +30,4 @@ Changelog or History whatever, topmost entry is the actual one :)
 	  so image create/copy/rename had to been made by hand
 	- had a nasty bug in hash-creation that broke some rare game-entries
 
-©2007-2011 by NoNo
+©2007-2014 by NoNo

@@ -35,6 +35,9 @@ Public Class clGame
     Public Function getTitle() As String
         Return _title
     End Function
+    Public Sub setTitle(ByRef title As String)
+        _title = title
+    End Sub
     Public Function getElf() As String
         Return _elf
     End Function
@@ -59,9 +62,9 @@ Public Class clGame
     End Sub
     Public Sub setDiscTypeS(ByVal disctype As String)
         If disctype = "DVD" Then
-            _discType = &H14
+            _discType = clConstants.DISC_TYPE_DVD
         ElseIf disctype = "CD" Then
-            _discType = &H12
+            _discType = clConstants.DISC_TYPE_CD
         End If
     End Sub
 

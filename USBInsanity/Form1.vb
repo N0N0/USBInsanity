@@ -47,7 +47,6 @@ Imports System.IO
 
 Public Class Form1
 
-
     Dim ulcfg As String = "ul.cfg"
     Dim is_ulcfg As String
 
@@ -114,6 +113,7 @@ Public Class Form1
         If i < 0 Then Exit Sub
 
         ButtonDelete.Enabled = True
+        ' ButtonRename.Enabled = True
         TextBoxTitle.Text = installedGames(i).getTitle
         TextBoxFilename.Text = "ul." & TextBoxHash.Text & "." & _
                          installedGames(i).getElf & ".XX" ' Dateiname des ISOs
@@ -122,9 +122,16 @@ Public Class Form1
 
     Private Sub TextBoxTitle_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBoxTitle.TextChanged
         TextBoxFilename.Clear()
-
         ' Führe funcCRCBerechnung für den Inhalt der TextBox1 aus
         TextBoxHash.Text = usbadv.CreateHash(TextBoxTitle.Text)
+
+        If (TextBoxTitle.Text.Length > 0) Then
+            ButtonAddDisc.Enabled = True
+            ButtonAddImage.Enabled = True
+        Else
+            ButtonAddDisc.Enabled = False
+            ButtonAddImage.Enabled = False
+        End If
     End Sub
     Private Sub TextBoxTitle_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TextBoxTitle.KeyDown
         ' Stellt sicher, dass der Delete-Button deaktiviert wird, sobald etwas ins Title-Feld eingetragen wird
@@ -132,7 +139,13 @@ Public Class Form1
         ListBoxGames.SelectedItem = -1
     End Sub
 
-    Private Sub ButtonAddGame_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonAddGame.Click
+    ''' <summary>
+    ''' Adds a new game from a cd/dvd to the gamelist
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub ButtonAddDisc_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonAddDisc.Click
 
         On Error Resume Next
         ' Hol den Dateinamen aus der System.CNF von CDVD
@@ -152,8 +165,52 @@ Public Class Form1
 
         If nGame Is Nothing Then
             Exit Sub ' Wenn kein neues Spiel erstellt wurde, beenden
+        Else
+            AddGame(nGame)
+        End If
+        Exit Sub
+
+    End Sub
+
+    ''' <summary>
+    ''' Adds a new game from iso image to the gamelist
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub ButtonAddImage_Click(sender As System.Object, e As System.EventArgs) Handles ButtonAddImage.Click
+        Dim dialog As New OpenFileDialog()
+        Dim elfFile As String = ""
+        dialog.Title = "Choose Disc-Image"
+        dialog.Filter = "Disc Image|*.iso; *.bin"
+        If (dialog.ShowDialog() = System.Windows.Forms.DialogResult.OK) Then
+
+            elfFile = file.ReadSystemCNF(dialog.OpenFile())
+
+            ' If no guilty System.CNF had been found leave this sub
+            If elfFile = "" Or elfFile Is Nothing Then
+                Exit Sub
+            End If
+
+            Dim nGame As clGame = usbadv.NewGame(TextBoxTitle.Text, _
+                                                 elfFile, _
+                                                 dialog.OpenFile().Length, _
+                                                 ComboMedia.Text)
+            If nGame Is Nothing Then
+                Exit Sub ' Wenn kein neues Spiel erstellt wurde, beenden
+            Else
+                AddGame(nGame)
+            End If
         End If
 
+    End Sub
+
+    ''' <summary>
+    ''' Writes a Game Object to the ul.cfg destinated on the drive selected in ComboHDD
+    ''' </summary>
+    ''' <param name="nGame"></param>
+    ''' <remarks></remarks>
+    Private Sub AddGame(ByRef nGame As clGame)
         ' Schreibe den Eintrag in die ul.cfg
         usbadv.WriteUlcfg(nGame, ComboHDD.SelectedItem)
 
@@ -166,10 +223,8 @@ Public Class Form1
         'MsgBox("Please name your ISO-Parts like this:" & vbCrLf & vbCrLf & vbTab & DateinamenMaske & ".0x" & vbTab)
         ' Called die Funktion ImageDump --> Alphastatus --> Übergabewerte entschlacken bzw. aufräumen!
         ' Call ImageDumpExtern(mediasize, Teile, DateinamenMaske)
-
-        Exit Sub
-
     End Sub
+
 
     Private Sub ButtonSort_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonSort.Click
         On Error Resume Next
@@ -299,6 +354,21 @@ Public Class Form1
     End Sub
     Private Sub ImageDumpIntern()
         On Error Resume Next
+    End Sub
+
+    '' TODO: Dateinamen umbenennen.
+    Private Sub ButtonRename_Click(sender As System.Object, e As System.EventArgs) Handles ButtonRename.Click
+        Dim game As clGame = installedGames(ListBoxGames.SelectedIndex)
+        game.setTitle(TextBoxTitle.Text)
+
+
+
+        ' Erstelle ul.cfg neu
+        usbadv.WriteNewUlcfg(installedGames, ComboHDD.SelectedItem)
+
+        ' Aktualisiere Spieleliste
+        Call ComboHDD_SelectedIndexChanged(Me, New System.EventArgs)
+
     End Sub
 
 End Class

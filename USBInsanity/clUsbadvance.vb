@@ -41,7 +41,16 @@ Public Class clUsbadvance
     Dim mem As New IO.MemoryStream(My.Resources.USBInsanity)
     Dim xr As New BinaryReader(mem)
 
-    Public Function NewGame(ByVal title As String, ByVal Dateiname As String, ByVal srcDrv As String, ByVal mediatype As String) As clGame
+    Public Function NewGame(ByRef title As String, ByRef Dateiname As String, ByRef srcDrv As String, ByRef mediatype As String) As clGame
+        ' Hol die Anzahl der Teile ein
+        Dim mediasize As Long
+        Dim drive_info As New DriveInfo(srcDrv)
+        mediasize = drive_info.TotalSize
+        Return NewGame(title, Dateiname, mediasize, mediatype)
+    End Function
+
+
+    Public Function NewGame(ByRef title As String, ByRef Dateiname As String, ByRef mediaSize As Long, ByRef mediatype As String) As clGame
         On Error Resume Next
         Dim DateinameBack As String
         Dim Media, Teile As Byte
@@ -59,38 +68,36 @@ Public Class clUsbadvance
 
         ' Hol den MedienTyp ein und bring ihn in Byteform :>
         If mediatype = "CD" Then
-            Media = &H12
+            Media = clConstants.DISC_TYPE_CD
         ElseIf mediatype = "DVD" Then
-            Media = &H14
+            Media = clConstants.DISC_TYPE_DVD
         Else
             MsgBox("Unsupported MediaType(?)")
             Return Nothing
         End If
 
         ' Hol die Anzahl der Teile ein
-        Dim mediasize, media_antiround As Long
-        Dim drive_info As New DriveInfo(srcDrv)
-        mediasize = drive_info.TotalSize
+        Dim media_antiround As Long
 
         ' Wenn MedienTyp "CD" prüfe, ob es wirklich eine CD ist
-        If Media = &H12 And mediasize > 734003200 Then
-            If MsgBox("The Data on Drive " & srcDrv & " seems to be too much for a CD (" & Convert.ToInt32(mediasize / 1048576) & " MegaByte)." & vbCrLf & "Should the Mediatype be set to DVD instead?", MsgBoxStyle.YesNo, "Warning!") = MsgBoxResult.Yes Then
-                Media = &H14
+        If Media = clConstants.DISC_TYPE_CD And mediasize > 734003200 Then
+            If MsgBox("The Gamedata seems to be too much for a CD (" & Convert.ToInt32(mediaSize / 1048576) & " MegaByte)." & vbCrLf & "Should the Mediatype be set to DVD instead?", MsgBoxStyle.YesNo, "Warning!") = MsgBoxResult.Yes Then
+                Media = clConstants.DISC_TYPE_DVD
             End If
         End If
 
         ' Prüfe obs Medium zu klein für eine DVD ist und schlage den Wechsel des Medientyps vor
-        If Media = &H14 And mediasize <= 734003200 Then
-            If MsgBox("The Data on Drive " & srcDrv & " seems to be too few Data for a DVD (" & Convert.ToInt32(mediasize / 1048576) & " MegaByte)." & vbCrLf & "Should the Mediatype be set to CD instead?", MsgBoxStyle.YesNo, "Warning!") = MsgBoxResult.Yes Then
-                Media = &H12
+        If Media = clConstants.DISC_TYPE_DVD And mediasize <= 734003200 Then
+            If MsgBox("The Gamedata seems to be too few Data for a DVD (" & Convert.ToInt32(mediaSize / 1048576) & " MegaByte)." & vbCrLf & "Should the Mediatype be set to CD instead?", MsgBoxStyle.YesNo, "Warning!") = MsgBoxResult.Yes Then
+                Media = clConstants.DISC_TYPE_CD
             End If
         End If
 
-        ' Prüfe auf DVD9
-        If mediasize > 4700000000 Then
-            MsgBox("DVD9 is neither supported by USBExtreme, nor is it by USBInsanity!", MsgBoxStyle.Critical, "Sorry")
-            Return Nothing
-        End If
+        ' Prüfe auf DVD9 -> veraltet, OpenPSLoader und PS2ESDL unterstützen DVD9
+        '    If mediasize > 4700000000 Then
+        ' MsgBox("DVD9 is neither supported by USBExtreme, nor is it by USBInsanity!", MsgBoxStyle.Critical, "Sorry")
+        ' Return Nothing
+        ' End If
 
         ' Errechne die Teilstücke (je 1024 MegaByte)
         media_antiround = mediasize / 1048576
@@ -355,7 +362,7 @@ datenSchreiben:
             ' ermittle länge von ul.cfg
             fileLen = getFileLen(destDrv & ulcfg)
             If fileLen < 0 Then fileLen = 0 ' wenn die ul.cfg nicht vorhanden ist, setze länge auf 0
-            file.funcBinaryWrite(path2write, fileLen, data2writeUL)
+            file.BinaryWrite(path2write, fileLen, data2writeUL)
         Next j
 
         Return 0

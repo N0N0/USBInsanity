@@ -1,20 +1,42 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Basic Express 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "USBInsanity", "USBInsanity\USBInsanity.vbproj", "{1938F585-E9E4-48A7-BDCC-485BF3B863D3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DBB340F9-2386-43C2-A473-FA496CBE07A4} = {DBB340F9-2386-43C2-A473-FA496CBE07A4}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscUtils", "DiscUtilsSrc-0.10\src\DiscUtils.csproj", "{DBB340F9-2386-43C2-A473-FA496CBE07A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Release (StyleCop)|Any CPU = Release (StyleCop)|Any CPU
 		Release|Any CPU = Release|Any CPU
+		SignedRelease|Any CPU = SignedRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{1938F585-E9E4-48A7-BDCC-485BF3B863D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1938F585-E9E4-48A7-BDCC-485BF3B863D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1938F585-E9E4-48A7-BDCC-485BF3B863D3}.Release (StyleCop)|Any CPU.ActiveCfg = Release|Any CPU
+		{1938F585-E9E4-48A7-BDCC-485BF3B863D3}.Release (StyleCop)|Any CPU.Build.0 = Release|Any CPU
 		{1938F585-E9E4-48A7-BDCC-485BF3B863D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1938F585-E9E4-48A7-BDCC-485BF3B863D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1938F585-E9E4-48A7-BDCC-485BF3B863D3}.SignedRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{1938F585-E9E4-48A7-BDCC-485BF3B863D3}.SignedRelease|Any CPU.Build.0 = Release|Any CPU
+		{DBB340F9-2386-43C2-A473-FA496CBE07A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBB340F9-2386-43C2-A473-FA496CBE07A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBB340F9-2386-43C2-A473-FA496CBE07A4}.Release (StyleCop)|Any CPU.ActiveCfg = Release (StyleCop)|Any CPU
+		{DBB340F9-2386-43C2-A473-FA496CBE07A4}.Release (StyleCop)|Any CPU.Build.0 = Release (StyleCop)|Any CPU
+		{DBB340F9-2386-43C2-A473-FA496CBE07A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBB340F9-2386-43C2-A473-FA496CBE07A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBB340F9-2386-43C2-A473-FA496CBE07A4}.SignedRelease|Any CPU.ActiveCfg = SignedRelease|Any CPU
+		{DBB340F9-2386-43C2-A473-FA496CBE07A4}.SignedRelease|Any CPU.Build.0 = SignedRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = utils\NTFSDump\NTFSDump.csproj
 	EndGlobalSection
 EndGlobal

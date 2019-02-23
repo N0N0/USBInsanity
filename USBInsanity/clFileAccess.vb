@@ -24,39 +24,59 @@
 ' ///////////////////////////////////////////////////////////////////////////
 
 Imports System.IO
+Imports DiscUtils
+Imports DiscUtils.Iso9660
+Imports DiscUtils.raw
 
 Public Class clFileAccess
 
+    Public Function ReadSystemCNF(ByRef srcFile As System.IO.Stream) As String
+        Dim reader = Nothing
+        Try
+            reader = New CDReader(srcFile, True)
+        Catch
+            MsgBox("Your Image seems to be a RAW/BIN Image file, please try a tool like bin2iso to convert it into a standard ISO9660 image.", MsgBoxStyle.Critical, "Error")
+            Return ""
+        End Try
+
+        Dim dateiname As String = ""
+
+        If (reader.FileExists("\BOOT.ELF")) Then
+            srcFile.Close()
+            Return "BOOT.ELF"
+        ElseIf (reader.FileExists("\SYSTEM.CNF")) Then ' read the file
+            Dim exeName As String = getExecutableName(reader.OpenFile("\SYSTEM.CNF", FileMode.Open))
+            srcFile.Close()
+            Return exeName
+        Else
+            srcFile.Close()
+            MsgBox("Could not determine game executable.", MsgBoxStyle.Critical, "Error")
+            Return ""
+        End If
+
+    End Function
+
     ' Sucht und liest Informationen aus der System.cnf der gewählten DVD
-    Public Function ReadSystemCNF(ByVal srcDrive As String) As String
+    Public Function ReadSystemCNF(ByRef srcDrive As String) As String
 
         On Error Resume Next
-        Dim CNF_Laenge As Integer
-        Dim bootelf As Boolean = False
-        Dim i As Integer
-        Dim CNF_Inhalt, CNF_Kurz, CNF_Backup As String
-        Dim dateiname As String = ""
-        Dim str As New clStrings()
-
-        ' Suche System.CNF
-        CNF_Laenge = FileLen(srcDrive & "SYSTEM.CNF")
-
-        ' Wurde keine System.cnf gefunden suche eine BOOT.ELF
-        If CNF_Laenge = 0 Then
-            bootelf = File.Exists(srcDrive & "BOOT.ELF")
-        End If
-
-        If bootelf = True Then Return "BOOT.ELF" ' wurde eine BOOT.ELF gefunden gib Ihren namen zurück
-
-        If CNF_Laenge = 0 And bootelf = 0 Then ' wurde nichts gefunden sag bescheid und beende
+        ' suche BOOT.ELF
+        If (File.Exists(srcDrive & "BOOT.ELF")) Then
+            Return "BOOT.ELF"
+        ElseIf (File.Exists(srcDrive & "SYSTEM.CNF")) Then ' kein BOOT.ELF ? > suche System.CNF
+            Dim fs As New FileStream(srcDrive & "SYSTEM.CNF", FileMode.Open, FileAccess.Read)
+            Return getExecutableName(fs)
+        Else ' weder BOOT.ELF noch System.CNF ? > fehler
             MsgBox("Please insert Playstation 2 CD/DVD in Drive " & srcDrive & " .", MsgBoxStyle.Critical, "Error")
             Return ""
-            Exit Function
         End If
 
-        ' Lese System.CNF
-        ' Datei als Stream mit Leserechten öffnen
-        Dim fs As New FileStream(srcDrive & "SYSTEM.CNF", FileMode.Open, FileAccess.Read)
+    End Function
+
+    Private Function getExecutableName(ByRef fs As Stream) As String
+        Dim CNF_Laenge As Integer = fs.Length
+        Dim CNF_Inhalt As String
+        Dim str As New clStrings()
         ' Stream binär öffnen
         Dim r As BinaryReader = New BinaryReader(fs)
         ' Pointer setzen
@@ -68,24 +88,24 @@ Public Class clFileAccess
 
         ' Müll, um den Dateinamen abschneiden
         ' links
-        While str.funcLeft(CNF_Inhalt, 1) <> "\"
-            CNF_Inhalt = str.funcRight(CNF_Inhalt, Len(CNF_Inhalt) - 1)
+        While Str.funcLeft(CNF_Inhalt, 1) <> "\"
+            CNF_Inhalt = Str.funcRight(CNF_Inhalt, Len(CNF_Inhalt) - 1)
         End While
-        CNF_Inhalt = str.funcRight(CNF_Inhalt, Len(CNF_Inhalt) - 1)
+        CNF_Inhalt = Str.funcRight(CNF_Inhalt, Len(CNF_Inhalt) - 1)
         ' und rechts
-        CNF_Inhalt = str.funcLeft(CNF_Inhalt, 12)
+        CNF_Inhalt = Str.funcLeft(CNF_Inhalt, 12)
         ' prüfe ob der Dateiname kürzer als 8.3 ist
-        While str.funcRight(CNF_Inhalt, 1) <> ";"
-            CNF_Inhalt = str.funcLeft(CNF_Inhalt, Len(CNF_Inhalt) - 1)
+        While Str.funcRight(CNF_Inhalt, 1) <> ";"
+            CNF_Inhalt = Str.funcLeft(CNF_Inhalt, Len(CNF_Inhalt) - 1)
         End While
         ' schneide das ";" ab
-        CNF_Inhalt = str.funcLeft(CNF_Inhalt, Len(CNF_Inhalt) - 1)
+        CNF_Inhalt = Str.funcLeft(CNF_Inhalt, Len(CNF_Inhalt) - 1)
 
         Return CNF_Inhalt
     End Function
 
     ' Schreibt einen Binärstring
-    Public Function funcBinaryWrite(ByVal sFile As String, ByVal sOffset As String, ByVal sData As ULong) As Byte
+    Public Function BinaryWrite(ByVal sFile As String, ByVal sOffset As String, ByVal sData As ULong) As Byte
         On Error GoTo errors
         ' Datei als stream mit Schreibzugriff öffnen
         Dim fs As New FileStream(sFile, FileMode.OpenOrCreate, FileAccess.ReadWrite)
